@@ -1,0 +1,39 @@
+.parent{
+    display: grid;
+    grid-template-columns: 35vx 35vw;
+    grid-template-rows: 45vh 45vh;
+    grid-template-areas: 
+    "tp tp tp"
+    "hd hd hd"
+    "ft ft ft";
+}
+#head{
+    grid-area: tp;
+}
+#side{
+    
+    display: none;
+}
+#main{
+    grid-area: hd;
+}
+#footer{
+    grid-area: ft;
+}
+@media (max-width:700px) {
+    .parent{
+        grid-template-areas: 
+    "sd tp tp"
+    "sd hd hd"
+    "ft ft ft";
+    }
+    #head{
+        grid-area: tp;
+        display: none;
+    }
+    #side{
+    
+        display: block;
+        grid-area: sd;
+    }
+}

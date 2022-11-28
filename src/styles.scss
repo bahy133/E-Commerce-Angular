@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    padding: 0;
+    margin: 0 !important;
+}
+*{
+    font-family: cursive;
+}
+::-webkit-scrollbar{ /*width of my entire scrollbar*/
+    width: 5px;
+}
+::-webkit-scrollbar-track{/*l background bta3 l scrollbar*/
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.25);
+}
+::-webkit-scrollbar-thumb{/*Scrollbar*/
+    border-radius: 3px;
+    background: linear-gradient(to bottom,#950b0b,#440606);
+}
