@@ -1,6 +1,10 @@
-<div class="conatiner-fluid parent">
+<div class="parent">
   <app-navbar id="head"></app-navbar>
-  <app-navbar id="side"></app-navbar>
-  <router-outlet id="main"></router-outlet>
+
+  <app-sidebar id="side"></app-sidebar>
+  <div class="container">
+    <router-outlet id="main"></router-outlet>
+  </div>
+
   <app-footer id="footer"></app-footer>
 </div>

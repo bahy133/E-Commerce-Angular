@@ -1,17 +1,30 @@
-nav{
+.parent{
     position: sticky;
     top: 0;
+.logo{
+    cursor: pointer;
+    img{
+        position: absolute;
+        top: -40px;
+        border-radius: 50%;
+        z-index: 5;
+    }
+}
+nav{
+    
     background: linear-gradient(to right,#950b0b,#440606);
     color: #FFF;
     .content{
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        padding: 10px 0;
+        padding:  0;
         ul{
             list-style: none;
             display: flex;
             justify-content: space-between;
+            margin-left: 150px;
+            align-items: center;
             width: 20%;
             margin: 0;
             li{
@@ -19,7 +32,29 @@ nav{
                 font-size: 22px;
                 color: #FFF;
                 text-decoration: none;
+                margin-left: 10px;
+                transition-duration: .5s;
+                padding: 20px;
+                &:hover{
+                    text-transform: uppercase;
+                    background-color: white;
+                    color: black;
+                    
+                }
             }
         }
     }
+}
+}
+@media (max-width:900px) {
+    nav{
+        width: 900px;
+        .content{
+            margin-right: 450px;
+        }
+    }
+    
+}
+@media (max-width:725px) {
+    
 }
