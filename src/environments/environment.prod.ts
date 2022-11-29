@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  link: 'https://fakestoreapi.com/products',
 };
