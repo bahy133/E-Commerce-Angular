@@ -34,4 +34,7 @@ export class ProductService {
   deletProduct(id: number): Observable<Product> {
     return this.http.delete<Product>(`${environment.link}/${id}`);
   }
+  getProductsByCat(cat: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${environment}?category=${cat}`);
+  }
 }
