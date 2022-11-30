@@ -7,6 +7,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+import { SharedModule } from '../shared/shared.module';
+
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'Details/:id', component: ProductDetailsComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgxPaginationModule,
     ToastrModule.forRoot(),
+    SharedModule,
   ],
 })
 export class ProductModule {}

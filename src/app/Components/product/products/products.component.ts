@@ -23,6 +23,7 @@ export class ProductsComponent implements OnInit {
   count: number = 0;
   tableSize: number = 5;
   catList!: Categories[];
+  loading: boolean = false;
   constructor(
     private Prdser: ProductService,
     private toastr: ToastrService,
@@ -38,34 +39,41 @@ export class ProductsComponent implements OnInit {
     this.getData();
   }
   getData() {
+    this.loading = true;
     if (this.value == '0') {
       this.Prdser.getallProducts().subscribe(
         (data) => {
           this.prdList = data;
+          this.loading = false;
           this.toastr.success('Data loaded Successfully');
         },
         (err) => {
+          this.loading = false;
           this.toastr.error('Error ' + err.status);
         }
       );
     } else if (this.value == '1') {
       this.catser.getCategoriesbyname('electronics').subscribe((data) => {
         this.prdList = data;
+        this.loading = false;
         this.toastr.success('Data loaded Successfully');
       });
     } else if (this.value == '2') {
       this.catser.getCategoriesbyname('jewelery').subscribe((data) => {
         this.prdList = data;
+        this.loading = false;
         this.toastr.success('Data loaded Successfully');
       });
     } else if (this.value == '3') {
       this.catser.getCategoriesbyname(`men's clothing`).subscribe((data) => {
         this.prdList = data;
+        this.loading = false;
         this.toastr.success('Data loaded Successfully');
       });
     } else if (this.value == '4') {
       this.catser.getCategoriesbyname(`women's clothing`).subscribe((data) => {
         this.prdList = data;
+        this.loading = false;
         this.toastr.success('Data loaded Successfully');
       });
     }
@@ -76,9 +84,11 @@ export class ProductsComponent implements OnInit {
       this.Prdser.getallProducts().subscribe(
         (data) => {
           this.prdList = data;
+          this.loading = false;
           this.toastr.success('Data loaded Successfully');
         },
         (err) => {
+          this.loading = false;
           this.toastr.error('Error ' + err.status);
         }
       );
@@ -86,24 +96,28 @@ export class ProductsComponent implements OnInit {
       this.value = '1';
       this.catser.getCategoriesbyname('electronics').subscribe((data) => {
         this.prdList = data;
+        this.loading = false;
         this.toastr.success('Data loaded Successfully');
       });
     } else if (event.target.value == '2') {
       this.value = '2';
       this.catser.getCategoriesbyname('jewelery').subscribe((data) => {
         this.prdList = data;
+        this.loading = false;
         this.toastr.success('Data loaded Successfully');
       });
     } else if (event.target.value == '3') {
       this.value = '3';
       this.catser.getCategoriesbyname(`men's clothing`).subscribe((data) => {
         this.prdList = data;
+        this.loading = false;
         this.toastr.success('Data loaded Successfully');
       });
     } else if (event.target.value == '4') {
       this.value = '4';
       this.catser.getCategoriesbyname(`women's clothing`).subscribe((data) => {
         this.prdList = data;
+        this.loading = false;
         this.toastr.success('Data loaded Successfully');
       });
     }

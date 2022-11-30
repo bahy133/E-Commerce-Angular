@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
   imports: [
