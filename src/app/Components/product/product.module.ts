@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { SharedModule } from '../shared/shared.module';
+import { ItemComponent } from './item/item.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -15,7 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ProductsComponent, ProductDetailsComponent],
+  declarations: [ProductsComponent, ProductDetailsComponent, ItemComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
