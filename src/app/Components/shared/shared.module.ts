@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { SelectComponent } from './select/select.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     FooterComponent,
     SidebarComponent,
     SpinnerComponent,
+    SelectComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -19,6 +21,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     FooterComponent,
     SidebarComponent,
     SpinnerComponent,
+    SelectComponent,
   ],
 })
 export class SharedModule {}

@@ -13,4 +13,9 @@ export class CatService {
       `https://fakestoreapi.com/products/category/${name}`
     );
   }
+  getallCat(): Observable<string[]> {
+    return this.http.get<string[]>(
+      `https://fakestoreapi.com/products/categories`
+    );
+  }
 }

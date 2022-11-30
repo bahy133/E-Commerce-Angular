@@ -1,0 +1,6 @@
+<select class="form-control w-25 mt-10" (change)="changeCat($event)">
+  <option value="0" selected>All</option>
+  <option *ngFor="let cat of data; let i = index" value="{{ i + 1 }}">
+    {{ cat }}
+  </option>
+</select>

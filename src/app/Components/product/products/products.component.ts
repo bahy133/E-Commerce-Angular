@@ -24,6 +24,7 @@ export class ProductsComponent implements OnInit {
   tableSize: number = 5;
   catList!: Categories[];
   loading: boolean = false;
+  Categories!: string[];
   constructor(
     private Prdser: ProductService,
     private toastr: ToastrService,
@@ -33,6 +34,9 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.value = '0';
     this.getData();
+    this.catser.getallCat().subscribe((data) => {
+      this.Categories = data;
+    });
   }
   onTableDataChange(event: any) {
     this.page = event;
