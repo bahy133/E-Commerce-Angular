@@ -5,7 +5,18 @@
     <p>{{ data.description }}</p>
   </div>
   <div class="px-3 mb-2 d-flex justify-content-between align-items-center">
-    <button class="btn btn-success" (click)="Cart($event)">Add To Cart</button>
+    <button class="btn btn-success" (click)="Cart()" *ngIf="!clicked">
+      Add To Cart
+    </button>
+    <div *ngIf="clicked" class="in">
+      <input
+        type="number"
+        class="form-control in"
+        [(ngModel)]="itemNum"
+        min="1"
+      />
+      <button class="btn btn-danger" (click)="addNum()">Add</button>
+    </div>
     <span>{{ data.price }} L.E</span>
   </div>
 </div>

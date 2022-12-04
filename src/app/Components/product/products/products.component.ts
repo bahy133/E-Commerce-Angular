@@ -115,6 +115,7 @@ export class ProductsComponent implements OnInit {
           this.prdList = data;
           this.loading = false;
           this.toastr.success('Data loaded Successfully');
+          this.page = 1;
         },
         (err) => {
           this.loading = false;
@@ -127,6 +128,7 @@ export class ProductsComponent implements OnInit {
         this.prdList = data;
         this.loading = false;
         this.toastr.success('Data loaded Successfully');
+        this.page = 1;
       });
     } else if (event.target.value == '2') {
       this.value = '2';
@@ -134,6 +136,7 @@ export class ProductsComponent implements OnInit {
         this.prdList = data;
         this.loading = false;
         this.toastr.success('Data loaded Successfully');
+        this.page = 1;
       });
     } else if (event.target.value == '3') {
       this.value = '3';
@@ -141,6 +144,7 @@ export class ProductsComponent implements OnInit {
         this.prdList = data;
         this.loading = false;
         this.toastr.success('Data loaded Successfully');
+        this.page = 1;
       });
     } else if (event.target.value == '4') {
       this.value = '4';
@@ -148,14 +152,20 @@ export class ProductsComponent implements OnInit {
         this.prdList = data;
         this.loading = false;
         this.toastr.success('Data loaded Successfully');
+        this.page = 1;
       });
     }
   }
   addToCart(event: any) {
     if ('cart' in localStorage) {
       this.cartItems = JSON.parse(localStorage.getItem('cart')!);
-      this.cartItems.push(event);
-      localStorage.setItem('cart', JSON.stringify(this.cartItems));
+      let exist = this.cartItems.find((item) => item.item.id == event.item.id);
+      if (exist) {
+        this.toastr.error('Product is already in your cart');
+      } else {
+        this.cartItems.push(event);
+        localStorage.setItem('cart', JSON.stringify(this.cartItems));
+      }
     } else {
       this.cartItems.push(event);
       localStorage.setItem('cart', JSON.stringify(this.cartItems));

@@ -12,21 +12,20 @@ export class ItemComponent implements OnInit {
   @Input() page!: number;
   @Input() count!: number;
   @Output() item = new EventEmitter();
+  clicked: boolean = false;
   Cartarr: any[] = [];
+  itemNum: number = 1;
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  Cart(event: any) {
-    this.item.emit(this.data);
-    // console.log(this.prdList.filter((data) => (data.id = id))[0]);
-    // localStorage.setItem(
-    //   'cart',
-    //   JSON.stringify(this.prdList.filter((data) => (data.id = id))[0])
-    // );
-    // location.reload();
-    // console.log(event.value);
+  Cart() {
+    this.clicked = true;
   }
   redirect(id: number) {
     this.router.navigate(['/Products/Details/', id]);
+  }
+  addNum() {
+    this.item.emit({ item: this.data, quantity: this.itemNum });
+    this.clicked = false;
   }
 }

@@ -9,6 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { SharedModule } from '../shared/shared.module';
 import { ItemComponent } from './item/item.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
     NgxPaginationModule,
     ToastrModule.forRoot(),
     SharedModule,
+    FormsModule,
   ],
 })
 export class ProductModule {}

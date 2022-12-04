@@ -1,6 +1,6 @@
 .item{
     cursor: pointer;
-    width: 250px;
+    width: 290px;
     text-decoration: none;
     color: #333;
     margin: 15px;
@@ -40,4 +40,8 @@
     padding: 3px 7px;
     border-radius: 30px;
    }
+   .in{
+    display: flex;
+    flex-wrap: nowrap;
+}
 }
