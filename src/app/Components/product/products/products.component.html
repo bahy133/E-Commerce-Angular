@@ -4,7 +4,22 @@
 ></app-select>
 <div class="box">
   <ng-container *ngIf="!loading">
-    <app-item [prdList]="prdList" [count]="count" [page]="page"></app-item>
+    <div
+      class="item"
+      *ngFor="
+        let item of prdList
+          | paginate
+            : { itemsPerPage: 10, currentPage: page, totalItems: count };
+        let i = index
+      "
+    >
+      <app-item
+        [data]="item"
+        [count]="count"
+        [page]="page"
+        (item)="addToCart($event)"
+      ></app-item>
+    </div>
   </ng-container>
 </div>
 <div>

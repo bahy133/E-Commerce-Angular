@@ -1,18 +1,11 @@
-<div
-  class="item"
-  *ngFor="
-    let item of prdList
-      | paginate: { itemsPerPage: 10, currentPage: page, totalItems: count };
-    let i = index
-  "
->
-  <img [src]="item.image" [alt]="item.title" />
+<div class="item">
+  <img [src]="data.image" [alt]="data.title" (click)="redirect(data.id)" />
   <div class="body">
-    <h4>{{ item.title }}</h4>
-    <p>{{ item.description }}</p>
+    <h4>{{ data.title }}</h4>
+    <p>{{ data.description }}</p>
   </div>
   <div class="px-3 mb-2 d-flex justify-content-between align-items-center">
-    <button class="btn btn-success">Add To Cart</button>
-    <span>{{ item.price }} L.E</span>
+    <button class="btn btn-success" (click)="Cart($event)">Add To Cart</button>
+    <span>{{ data.price }} L.E</span>
   </div>
 </div>

@@ -25,6 +25,7 @@ export class ProductsComponent implements OnInit {
   catList!: Categories[];
   loading: boolean = false;
   Categories!: string[];
+  cartItems: any[] = [];
   constructor(
     private Prdser: ProductService,
     private toastr: ToastrService,
@@ -57,29 +58,53 @@ export class ProductsComponent implements OnInit {
         }
       );
     } else if (this.value == '1') {
-      this.catser.getCategoriesbyname('electronics').subscribe((data) => {
-        this.prdList = data;
-        this.loading = false;
-        this.toastr.success('Data loaded Successfully');
-      });
+      this.catser.getCategoriesbyname('electronics').subscribe(
+        (data) => {
+          this.prdList = data;
+          this.loading = false;
+          this.toastr.success('Data loaded Successfully');
+        },
+        (err) => {
+          this.loading = false;
+          this.toastr.error('Error ' + err.status);
+        }
+      );
     } else if (this.value == '2') {
-      this.catser.getCategoriesbyname('jewelery').subscribe((data) => {
-        this.prdList = data;
-        this.loading = false;
-        this.toastr.success('Data loaded Successfully');
-      });
+      this.catser.getCategoriesbyname('jewelery').subscribe(
+        (data) => {
+          this.prdList = data;
+          this.loading = false;
+          this.toastr.success('Data loaded Successfully');
+        },
+        (err) => {
+          this.loading = false;
+          this.toastr.error('Error ' + err.status);
+        }
+      );
     } else if (this.value == '3') {
-      this.catser.getCategoriesbyname(`men's clothing`).subscribe((data) => {
-        this.prdList = data;
-        this.loading = false;
-        this.toastr.success('Data loaded Successfully');
-      });
+      this.catser.getCategoriesbyname(`men's clothing`).subscribe(
+        (data) => {
+          this.prdList = data;
+          this.loading = false;
+          this.toastr.success('Data loaded Successfully');
+        },
+        (err) => {
+          this.loading = false;
+          this.toastr.error('Error ' + err.status);
+        }
+      );
     } else if (this.value == '4') {
-      this.catser.getCategoriesbyname(`women's clothing`).subscribe((data) => {
-        this.prdList = data;
-        this.loading = false;
-        this.toastr.success('Data loaded Successfully');
-      });
+      this.catser.getCategoriesbyname(`women's clothing`).subscribe(
+        (data) => {
+          this.prdList = data;
+          this.loading = false;
+          this.toastr.success('Data loaded Successfully');
+        },
+        (err) => {
+          this.loading = false;
+          this.toastr.error('Error ' + err.status);
+        }
+      );
     }
   }
   changeCat(event: any) {
@@ -124,6 +149,16 @@ export class ProductsComponent implements OnInit {
         this.loading = false;
         this.toastr.success('Data loaded Successfully');
       });
+    }
+  }
+  addToCart(event: any) {
+    if ('cart' in localStorage) {
+      this.cartItems = JSON.parse(localStorage.getItem('cart')!);
+      this.cartItems.push(event);
+      localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    } else {
+      this.cartItems.push(event);
+      localStorage.setItem('cart', JSON.stringify(this.cartItems));
     }
   }
 }

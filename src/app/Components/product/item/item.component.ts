@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/Model/product';
 
 @Component({
@@ -7,10 +8,25 @@ import { Product } from 'src/app/Model/product';
   styleUrls: ['./item.component.scss'],
 })
 export class ItemComponent implements OnInit {
-  @Input() prdList!: Product[];
+  @Input() data!: Product;
   @Input() page!: number;
   @Input() count!: number;
-  constructor() {}
+  @Output() item = new EventEmitter();
+  Cartarr: any[] = [];
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+  Cart(event: any) {
+    this.item.emit(this.data);
+    // console.log(this.prdList.filter((data) => (data.id = id))[0]);
+    // localStorage.setItem(
+    //   'cart',
+    //   JSON.stringify(this.prdList.filter((data) => (data.id = id))[0])
+    // );
+    // location.reload();
+    // console.log(event.value);
+  }
+  redirect(id: number) {
+    this.router.navigate(['/Products/Details/', id]);
+  }
 }
