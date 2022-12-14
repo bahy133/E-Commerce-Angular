@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SelectComponent } from './select/select.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SelectComponent } from './select/select.component';
     SidebarComponent,
     SpinnerComponent,
     SelectComponent,
+    ErrorComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -22,6 +24,7 @@ import { SelectComponent } from './select/select.component';
     SidebarComponent,
     SpinnerComponent,
     SelectComponent,
+    ErrorComponent,
   ],
 })
 export class SharedModule {}

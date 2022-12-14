@@ -1,1 +1,26 @@
-<p>product-details works!</p>
+<div class="container box" *ngIf="!err">
+  <div class="row" *ngIf="!loading">
+    <div class="col-md-5 col-sm-12">
+      <img [src]="prd.image" [alt]="prd.title" />
+    </div>
+    <div class="col-md-7 col-sm-12">
+      <div class="info">
+        <ul class="list-unstyled">
+          <li><strong>Title: </strong>{{ prd.title }}</li>
+          <li><strong>Category: </strong>{{ prd.category }}</li>
+          <li><strong>Description: </strong>{{ prd.description }}</li>
+          <li><strong>Rate: </strong>{{ prd.rating.rate }}</li>
+          <li><strong>Count: </strong>{{ prd.rating.count }}</li>
+          <li><strong>Price: </strong>{{ prd.price }} L.E</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <ng-container
+    *ngIf="loading"
+    style="display: flex; justify-content: center; align-items: center"
+  >
+    <app-spinner></app-spinner>
+  </ng-container>
+</div>
+<app-error *ngIf="err"></app-error>

@@ -165,6 +165,7 @@ export class ProductsComponent implements OnInit {
       } else {
         this.cartItems.push(event);
         localStorage.setItem('cart', JSON.stringify(this.cartItems));
+        this.toastr.success('Product added to your cart');
       }
     } else {
       this.cartItems.push(event);
