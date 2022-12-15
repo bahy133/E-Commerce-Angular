@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Cart } from 'src/app/Model/cart';
+import { CartService } from 'src/app/Services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +13,8 @@ export class CartComponent implements OnInit {
   Cartexist: boolean = true;
   total: number = 0;
   order: boolean = false;
-  constructor() {}
+  cart!: Cart;
+  constructor(private cartser: CartService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     if ('cart' in localStorage) {
@@ -58,5 +62,31 @@ export class CartComponent implements OnInit {
     this.cartItems = [];
     this.total = 0;
     this.Cartexist = false;
+  }
+  saveCartToApi() {
+    let products = this.cartItems.map((items) => {
+      return { productId: items.item.id, quantity: items.quantity };
+    });
+    let model = {
+      userId: 6,
+      date: new Date(),
+      products: products,
+    };
+    // for (let i = 0; i < this.cartItems.length; i++) {
+    //   this.cart.products.push({
+    //     productId: this.cartItems[i].item.id,
+    //     quantity: this.cartItems[i].quantity,
+    //   });
+    // }
+    this.cartser.addCart(model).subscribe(
+      () => {
+        this.toastr.success('Saved Successfully');
+        this.order = true;
+        localStorage.removeItem('cart');
+      },
+      (err) => {
+        this.toastr.error(`Error ${err.status}`, 'Error message');
+      }
+    );
   }
 }
