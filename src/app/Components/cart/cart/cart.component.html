@@ -1,12 +1,15 @@
-<div class="cartBox">
+<div class="cartBox" *ngIf="!order">
   <h1 class="text-danger">Shopping Cart</h1>
   <div class="headCart" *ngIf="Cartexist">
     <p class="lead">
-      You have <label class="text-danger">2</label> item(s) in your cart
+      You have <label class="text-danger">{{ cartItems.length }}</label> item(s)
+      in your cart
     </p>
-    <span class="text-danger card-header">Clear Shopping Cart</span>
+    <span class="text-danger card-header" (click)="clearCart()"
+      >Clear Shopping Cart</span
+    >
   </div>
-  <table class="table table-striped" *ngIf="Cartexist">
+  <table class="table table-striped" *ngIf="Cartexist && !order">
     <thead>
       <tr>
         <th></th>
@@ -18,24 +21,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let prd of cartItems">
+      <tr *ngFor="let prd of cartItems; let i = index">
         <td><img [src]="prd.item.image" [alt]="prd.item.title" /></td>
         <td>{{ prd.item.title }}</td>
         <td>{{ prd.item.price }} L.E</td>
         <td>
           <div class="quantity">
-            <button class="btn btn-dark">+</button>
+            <button class="btn btn-dark" (click)="increase(i)">+</button>
             <input
               class="form-control"
               type="number"
               min="1"
               [(ngModel)]="prd.quantity"
+              (change)="updateTotal($event, prd.item.id)"
             />
-            <button class="btn btn-dark">-</button>
+            <button class="btn btn-dark" (click)="decrease(i)">-</button>
           </div>
         </td>
-        <td>{{ prd.item.price * prd.quantity }}.LE</td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td>{{ prd.item.price * prd.quantity }} L.E</td>
+        <td>
+          <button class="btn btn-danger" (click)="removeItem(i)">Delete</button>
+        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -50,7 +56,7 @@
     </tfoot>
   </table>
 </div>
-<div class="alert alert-success" role="alert" *ngIf="Cartexist">
+<div class="alert alert-success mt-10" role="alert" *ngIf="order">
   <strong>Well done!</strong> Your Order is Successfully Send
 </div>
 <div *ngIf="!Cartexist" class="alert alert-danger">
