@@ -18,18 +18,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><img src="" alt="" /></td>
-        <td>Title</td>
-        <td>150 L.E</td>
+      <tr *ngFor="let prd of cartItems">
+        <td><img [src]="prd.item.image" [alt]="prd.item.title" /></td>
+        <td>{{ prd.item.title }}</td>
+        <td>{{ prd.item.price }} L.E</td>
         <td>
           <div class="quantity">
             <button class="btn btn-dark">+</button>
-            <input class="form-control" type="number" min="1" />
+            <input
+              class="form-control"
+              type="number"
+              min="1"
+              [(ngModel)]="prd.quantity"
+            />
             <button class="btn btn-dark">-</button>
           </div>
         </td>
-        <td>200.LE</td>
+        <td>{{ prd.item.price * prd.quantity }}.LE</td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
     </tbody>
@@ -39,7 +44,7 @@
         <th></th>
         <th></th>
         <th></th>
-        <th>Total : 1500 L.E</th>
+        <th>Total : {{ total }} L.E</th>
         <th><button class="btn btn-success">Order Now</button></th>
       </tr>
     </tfoot>
